@@ -2,8 +2,9 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>مشاوره روانشناسی تلفنی</title>
+  <title>دمنوش گیاهی لاغری | ثبت درخواست مشاوره رایگان</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="با ثبت شماره موبایل، مشاوره رایگان درباره دمنوش‌های گیاهی لاغری دریافت کن و با بهترین ترکیب برای شرایط بدنت آشنا شو.">
   <style>
     @font-face {
       font-family: 'Yekan';
@@ -26,8 +27,9 @@
       min-height: 100%;
       z-index: -1;
       object-fit: cover;
-      object-position: center center;  /* ← این خط اضافه بشه */
+      object-position: center center;
     }
+
     .overlay {
       position: fixed;
       width: 100%;
@@ -88,17 +90,6 @@
       margin-top: 10px;
     }
 
-    .video-bg {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      object-fit: cover;
-      object-position: center center;
-    }
-
     @media screen and (max-width: 768px) {
       .video-bg {
         width: 100vw;
@@ -107,11 +98,6 @@
         object-position: center top;
         background-color: black;
       }
-    }
-
-
-
-
     }
   </style>
 </head>
@@ -128,34 +114,34 @@
 
 <div class="container">
   <div class="question active" id="q1">
-    <h2>چه مشکلی داری؟</h2>
-    <button onclick="next('q1','q2')">اضطراب</button>
-    <button onclick="next('q1','q2')">افسردگی</button>
-    <button onclick="next('q1','q2')">مشکل خانوادگی</button>
+    <h2>کدوم یکی از این مشکلات رو بیشتر داری؟</h2>
+    <button onclick="next('q1','q2')">چربی شکم و پهلو</button>
+    <button onclick="next('q1','q2')">افزایش وزن بدون دلیل</button>
+    <button onclick="next('q1','q2')">اشتها و پرخوری عصبی</button>
   </div>
 
   <div class="question" id="q2">
-    <h2>چقدر احساس نیاز به کمک داری؟</h2>
-    <button onclick="next('q2','q3')">خیلی زیاد</button>
-    <button onclick="next('q2','q3')">تا حدودی</button>
-    <button onclick="next('q2','q3')">فقط برای مشاوره</button>
+    <h2>تا حالا دمنوش لاغری استفاده کردی؟</h2>
+    <button onclick="next('q2','q3')">نه، اولین باره</button>
+    <button onclick="next('q2','q3')">چند مدل امتحان کردم</button>
+    <button onclick="next('q2','q3')">می‌خوام فقط امتحان کنم</button>
   </div>
 
   <div class="question" id="q3">
     <h2>سن شما؟</h2>
-    <button onclick="next('q3','form')">کمتر از ۲۰</button>
-    <button onclick="next('q3','form')">۲۰ تا ۴۰</button>
-    <button onclick="next('q3','form')">بیشتر از ۴۰</button>
+    <button onclick="next('q3','form')">زیر ۲۰ سال</button>
+    <button onclick="next('q3','form')">۲۰ تا ۴۰ سال</button>
+    <button onclick="next('q3','form')">بالای ۴۰ سال</button>
   </div>
 
   <div class="form-section" id="form">
-    <h2>شماره موبایلت رو وارد کن</h2>
+    <h2>شماره موبایلت رو وارد کن تا مشاور تخصصی دمنوش لاغری باهات تماس بگیره</h2>
     <input type="tel" id="phone" placeholder="09XXXXXXXXX">
     <button onclick="submitForm()">ارسال</button>
   </div>
 
   <div class="thank-you" id="thankyou">
-    <h2>ممنون! اطلاعاتت با موفقیت ثبت شد 🎉</h2>
+    <h2>ممنون! درخواست مشاوره دمنوش لاغری با موفقیت ثبت شد 🌿</h2>
   </div>
 </div>
 
