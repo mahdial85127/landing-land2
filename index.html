@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>مشاوره روانشناسی تلفنی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    @font-face {
+      font-family: 'Yekan';
+      src: url('https://cdn.jsdelivr.net/gh/rastikerdar/yekan-font@v3.0.0/dist/Yekan.woff') format('woff');
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Yekan', sans-serif;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .video-bg {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .loading-screen {
+      position: fixed;
+      top: 0; right: 0; left: 0; bottom: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .question, .form-section, .thank-you {
+      display: none;
+      max-width: 90%;
+    }
+
+    .active {
+      display: block;
+    }
+
+    button {
+      background-color: #ffd700;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    input[type="tel"] {
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 80%;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="loading-screen" id="loading">
+  <h2 style="color:white;">در حال بارگذاری ...</h2>
+</div>
+
+<video autoplay muted loop class="video-bg" poster="https://cdn.hamkadeh.com/New-Landing-koli1%20(1).jpg">
+  <source src="https://cdn.hamkadeh.com/falah2.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<div class="container">
+  <div class="question active" id="q1">
+    <h2>چه مشکلی داری؟</h2>
+    <button onclick="next('q1','q2')">اضطراب</button>
+    <button onclick="next('q1','q2')">افسردگی</button>
+    <button onclick="next('q1','q2')">مشکل خانوادگی</button>
+  </div>
+
+  <div class="question" id="q2">
+    <h2>چقدر احساس نیاز به کمک داری؟</h2>
+    <button onclick="next('q2','q3')">خیلی زیاد</button>
+    <button onclick="next('q2','q3')">تا حدودی</button>
+    <button onclick="next('q2','q3')">فقط برای مشاوره</button>
+  </div>
+
+  <div class="question" id="q3">
+    <h2>سن شما؟</h2>
+    <button onclick="next('q3','form')">کمتر از ۲۰</button>
+    <button onclick="next('q3','form')">۲۰ تا ۴۰</button>
+    <button onclick="next('q3','form')">بیشتر از ۴۰</button>
+  </div>
+
+  <div class="form-section" id="form">
+    <h2>شماره موبایلت رو وارد کن</h2>
+    <input type="tel" id="phone" placeholder="09XXXXXXXXX">
+    <button onclick="submitForm()">ارسال</button>
+  </div>
+
+  <div class="thank-you" id="thankyou">
+    <h2>ممنون! اطلاعاتت با موفقیت ثبت شد 🎉</h2>
+  </div>
+</div>
+
+<script>
+  window.onload = () => {
+    document.getElementById("loading").style.display = "none";
+  }
+
+  function next(current, next) {
+    document.getElementById(current).classList.remove("active");
+    document.getElementById(next).classList.add("active");
+  }
+
+  function submitForm() {
+    const phone = document.getElementById("phone").value;
+    if (!phone.startsWith("09") || phone.length < 10) {
+      alert("شماره معتبر نیست!");
+      return;
+    }
+
+    const data = new URLSearchParams();
+    data.append("شماره", phone);
+
+    fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: data.toString()
+    })
+    .then(res => {
+      document.getElementById("form").classList.remove("active");
+      document.getElementById("thankyou").classList.add("active");
+    })
+    .catch(err => {
+      alert("خطا در ارسال اطلاعات");
+    });
+  }
+</script>
+
+</body>
+</html>
