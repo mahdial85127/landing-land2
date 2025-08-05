@@ -2,9 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>دمنوش گیاهی لاغری | ثبت درخواست مشاوره رایگان</title>
+  <title>دمنوش لاغری گیاهی</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="با ثبت شماره موبایل، مشاوره رایگان درباره دمنوش‌های گیاهی لاغری دریافت کن و با بهترین ترکیب برای شرایط بدنت آشنا شو.">
   <style>
     @font-face {
       font-family: 'Yekan';
@@ -23,8 +22,8 @@
       position: fixed;
       right: 0;
       bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
+      width: 100%;
+      height: 100%;
       z-index: -1;
       object-fit: cover;
       object-position: center center;
@@ -38,26 +37,16 @@
       z-index: 0;
     }
 
-    .loading-screen {
-      position: fixed;
-      top: 0; right: 0; left: 0; bottom: 0;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
     .container {
-      position: relative;
-      z-index: 1;
+      position: fixed;
+      bottom: 30px;
+      width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100%;
+      z-index: 1;
       color: white;
-      padding: 20px;
+      padding: 10px;
       text-align: center;
     }
 
@@ -77,7 +66,7 @@
       font-size: 16px;
       border-radius: 8px;
       cursor: pointer;
-      margin-top: 20px;
+      margin: 10px;
     }
 
     input[type="tel"] {
@@ -92,8 +81,6 @@
 
     @media screen and (max-width: 768px) {
       .video-bg {
-        width: 100vw;
-        height: auto;
         object-fit: contain;
         object-position: center top;
         background-color: black;
@@ -103,51 +90,51 @@
 </head>
 <body>
 
-<div class="loading-screen" id="loading">
-  <h2 style="color:white;">در حال بارگذاری ...</h2>
-</div>
-
-<video autoplay muted loop class="video-bg" poster="https://cdn.hamkadeh.com/New-Landing-koli1%20(1).jpg">
-  <source src="https://cdn.hamkadeh.com/story.mp4" type="video/mp4">
+<video id="bgvideo" loop class="video-bg" poster="https://cdn.hamkadeh.com/1.png">
+  <source src="https://cdn.hamkadeh.com/hayati%20(1).mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
 <div class="container">
+  <button onclick="startWithSound()">▶️ شروع با صدا</button>
+
   <div class="question active" id="q1">
-    <h2>کدوم یکی از این مشکلات رو بیشتر داری؟</h2>
-    <button onclick="next('q1','q2')">چربی شکم و پهلو</button>
-    <button onclick="next('q1','q2')">افزایش وزن بدون دلیل</button>
-    <button onclick="next('q1','q2')">اشتها و پرخوری عصبی</button>
+    <h2>دغدغه‌ات در مورد لاغری چیه؟</h2>
+    <button onclick="next('q1','q2')">اشتها زیاد دارم</button>
+    <button onclick="next('q1','q2')">اضافه وزن زیادی دارم</button>
+    <button onclick="next('q1','q2')">دنبال راه طبیعی هستم</button>
   </div>
 
   <div class="question" id="q2">
     <h2>تا حالا دمنوش لاغری استفاده کردی؟</h2>
-    <button onclick="next('q2','q3')">نه، اولین باره</button>
-    <button onclick="next('q2','q3')">چند مدل امتحان کردم</button>
-    <button onclick="next('q2','q3')">می‌خوام فقط امتحان کنم</button>
+    <button onclick="next('q2','q3')">نه، اولین بارمه</button>
+    <button onclick="next('q2','q3')">بله ولی جواب نگرفتم</button>
+    <button onclick="next('q2','q3')">بله، عالی بوده</button>
   </div>
 
   <div class="question" id="q3">
-    <h2>سن شما؟</h2>
-    <button onclick="next('q3','form')">زیر ۲۰ سال</button>
-    <button onclick="next('q3','form')">۲۰ تا ۴۰ سال</button>
-    <button onclick="next('q3','form')">بالای ۴۰ سال</button>
+    <h2>چقدر وزن می‌خوای کم کنی؟</h2>
+    <button onclick="next('q3','form')">زیر ۵ کیلو</button>
+    <button onclick="next('q3','form')">۵ تا ۱۰ کیلو</button>
+    <button onclick="next('q3','form')">بیشتر از ۱۰ کیلو</button>
   </div>
 
   <div class="form-section" id="form">
-    <h2>شماره موبایلت رو وارد کن تا مشاور تخصصی دمنوش لاغری باهات تماس بگیره</h2>
+    <h2>شماره‌تو وارد کن تا مشاوره دمنوش لاغری رو شروع کنیم</h2>
     <input type="tel" id="phone" placeholder="09XXXXXXXXX">
     <button onclick="submitForm()">ارسال</button>
   </div>
 
   <div class="thank-you" id="thankyou">
-    <h2>ممنون! درخواست مشاوره دمنوش لاغری با موفقیت ثبت شد 🌿</h2>
+    <h2>✅ ممنون! مشاوران ما بزودی باهات تماس می‌گیرن</h2>
   </div>
 </div>
 
 <script>
-  window.onload = () => {
-    document.getElementById("loading").style.display = "none";
+  function startWithSound() {
+    const video = document.getElementById('bgvideo');
+    video.muted = false;
+    video.play();
   }
 
   function next(current, next) {
